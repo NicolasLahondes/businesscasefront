@@ -1,0 +1,29 @@
+<h2>{{products.name}}</h2>
+{% if products.images %}
+	<img width="500" height="500" src="{{ asset('uploads/' ~ products.images)}}">
+{% endif %}
+<h4>Marque</h4>
+<p>{{ products.getFkBrand.name }}</p>
+
+<h4>Prix</h4>
+<p>{{ products.extaxprice }}
+	€</p>
+
+<h4>Description</h4>
+<p>{{ products.description }}</p>
+
+<h4>Categories</h4>
+{% for category in products.getFkCategories %}
+	{{ category.name ~ ', ' }}
+{% endfor %}
+
+<h4>En Stock</h4>
+{%if products.stock > 0 %}
+	<p>{{ 'Actuellement disponible' }}</p>
+{% else %}
+	<p>{{ 'Rupture de Stock' }}</p>
+{%endif %}
+
+
+<a href={{ path('products_edit', {id: products.getId} ) }}>Modifier</a>
+<a href={{ path('product_delete', {id: products.getId} ) }}>Supprimer</a>

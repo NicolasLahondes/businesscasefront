@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Categories index
+{% endblock %}
+
+{% block body %}
+	<div class="bg-dark d-flex justify-content-center">
+		<button type="button" class="btn btn-primary mt-4 mb-4 ms-4 text-center">
+			<a style="text-decoration: none; color: white;" href={{ path('categories_new') }}>Ajouter une nouvelle catégorie</a>
+		</button>
+		<button type="button" class="btn btn-primary mt-4 mb-4 ms-4 text-center">
+			<a style="text-decoration: none; color: white;" href="">Page client des Catégories</a>
+		</button>
+	</div>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Name</th>
+				{# <th>Img</th>
+				<th>Parent_id</th> #}
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for category in categories %}
+				{%  if category.parentId is null  %}
+					<tr>
+						<td>{{ category.id }}</td>
+						<td>{{ category.name }}</td>
+						{# <td>{{ category.img }}</td>
+						<td>{{ category.parentId }}</td> #}
+						<td>
+							<a href="{{ path('categories_show', {'id': category.id}) }}">Détails</a>
+							<a href="{{ path('categories_edit', {'id': category.id}) }}">Modifier</a>
+						</td>
+					</tr>
+				{%  endif %}
+			{% else %}
+				<tr>
+					<td colspan="5">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+
+{% endblock %}

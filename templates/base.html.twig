@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}Welcome!
+			{% endblock %}
+		</title>
+		{# Run `composer require symfony/webpack-encore-bundle`
+																																												           and uncomment the following Encore helpers to start using Symfony UX #}
+		{% block stylesheets %}
+			{{ encore_entry_link_tags('app') }}
+			{# <link href="{{ asset('css/style.css') }}" rel="stylesheet"/> #}
+		{% endblock %}
+
+		{% block javascripts %}
+			{{ encore_entry_script_tags('app') }}
+		{% endblock %}
+	</head>
+	<body class="body">
+		{% block header%}
+			{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+				<nav class="navbar navbar-expand-lg navbar-light bg-warning">
+				{% else %}
+					<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+					{% endif %}
+					<div class="container-fluid">
+						<a class="navbar-brand" href="#">Lanimalerie</a>
+						<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+							<span class="navbar-toggler-icon"></span>
+						</button>
+						<div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+							{% if is_granted('ROLE_ADMIN') %}
+								<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+									<li class="nav-item">
+										<a class="nav-link active" aria-current="page" href="{{ path('product_mag_display') }}">Gestion des Produits</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link active" aria-current="page" href="{{ path('categories_index') }}">Gestion des Catégories</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link active" aria-current="page" href="{{ path('brands_index') }}">Gestion des Marques</a>
+									</li>
+								</ul>
+							{% else %}
+								<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+									<li class="nav-item">
+										<a class="nav-link active" aria-current="page" href="{{ path('user_index') }}">Nos Produits</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link active" aria-current="page" href="">Nos Catégories</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link active" aria-current="page" href="">Nos marques</a>
+									</li>
+								</ul>
+
+
+							{% endif %}
+							{% if is_granted('IS_AUTHENTICATED_FULLY') %}Bonjour
+								{{ app.user.name }}
+								<a href="{{ path('app_logout') }}">
+									Logout</a>
+							{% else %}
+								<button type="button" class="btn btn-dark">
+									<a class="nav-link active" aria-current="page" style="text-decoration: none; color: white;" href="{{ path('app_login') }}">Connexion</a>
+								</button>
+							{% endif %}
+						</div>
+					</div>
+				</nav>
+			{% endblock %}
+			{% block body %}{% endblock %}
+		</body>
+	</body>
+</html>

@@ -1,0 +1,110 @@
+<html>
+	<head>
+		{# {{ include('content/_categories.php') }} #}
+		{{encore_entry_link_tags('app')}}
+	</head>
+	<body>
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark row" style="margin-right: 0px;">
+			<div class="col-1 ms-5">
+				<a class="navbar-brand" href="#">Animalerie</a>
+			</div>
+			<div
+				class="col-9 row ms-5">
+				{# <?php foreach ($aCategoriesAnimal as $value) : ?> #}
+				{% for value in aCategoriesAnimal %}
+					<div class="col-auto">
+						<div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+							<ul class="navbar-nav">
+								<li class="nav-item dropdown">
+									<a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+										{{value}}
+									</a>
+									<ul
+										class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+										{# <?php foreach ($aCategoriesProducts as $value) : ?> #}
+										{% for value in aCategoriesProducts %}
+											<li>
+												<a class="dropdown-item" href="#">{# <?php echo $value; ?></a> #}{{value}}
+												</li>
+												{# <?php endforeach; ?> #}
+											</li>
+										{% endfor %}
+									</ul>
+								</li>
+							</li>
+						</ul>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+		{# <?php if (!empty($_COOKIE['wantsToStayMail'])) : ?> #}
+		{# TODO: Add connected menu user #}
+		<div class="col-1">
+			<div class="row">
+				<div class="col-10">
+					<a style="text-decoration: none;" class="text-white">Mon Compte</a>
+				</div>
+				<div class="col-2">
+					<img class="portrait" src="https://media.istockphoto.com/photos/closeup-of-a-lonely-retired-man-picture-id152498555?k=20&m=152498555&s=612x612&w=0&h=cli64KDVa_8ANNdsGYXZFSEBMmfVXqNAI0dFV8a0mi4=" alt="" style="width: 50px; height: 50px;">
+				</div>
+			</div>
+		</div>
+	<?php else : ?>
+		<div class="col-1 row pe-0">
+			<button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalConnexion">Login</button>
+		</div>
+		<?php endif; ?>
+	</nav>
+	<!-- MODAL -->
+	<div class="modal fade" id="modalConnexion" tabindex="-1" aria-labelledby="modalConnexionLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="modalConnexionLabel">Connexion</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div
+					class="modal-body">
+					<!-- Form Submit Connexion -->
+					<form action="index.php" method="post">
+						<div class="mb-3">
+							<label for="email" class="form-label">Email address</label>
+							<input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" value="<?php if (!empty($_COOKIE['wantsToStayMail'])) : echo $_COOKIE['wantsToStayMail']; endif; ?>">
+							<div id="emailHelp" class="form-text">Nous ne divulguerons jamais votre mot de passe.</div>
+						</div>
+						<div class="mb-3">
+							<label for="password" class="form-label">Password</label>
+							<input type="password" class="form-control" id="password" name="password" placeholder="">
+						</div>
+						<button type="submit" class="btn btn-primary" name="submit" id="submit" value="submit">Se connecter</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Main display -->
+
+	<div class="setSize">
+		<div>
+			<div class="topImage">
+				<img src="assets/img/frontPageTop.png" alt="">
+			</div>
+			<div>
+				<img src="assets/img/futurKennel.webp" alt="">
+			</div>
+
+			{# // TODO: Assemble the CSS of each individual part of the next div to allow better control and simplicity over the main display. #}
+			<!-- <div> The CSS must be on that div related to the general div, this way it will all move together -->
+			<div>
+				<h2 class="topText">Le futur c'est maintenant.</h2>
+			</div>
+			<div>
+				<p class="topP">La niche de demain est responsable écologiquement
+					<br>
+					et permet à votre chien de mieux dormir.</p>
+			</div>
+			<button class="topBtn btn btn-info">Je réserve le bonheur de mon chien</button>
+		</div>
+	</div>
+</html></body></html></div></body></html>

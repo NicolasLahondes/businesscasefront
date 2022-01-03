@@ -1,0 +1,22 @@
+{%- block form_errors -%}
+{% if errors is defined %}
+	{%- if errors|length > 0 -%}
+		<ul>
+			{%- for error in errors -%}
+				<li class="{{ error.cause.constraint.payload.severity ?? '' }}">{{ error.message }}</li>
+			{%- endfor -%}
+		</ul>
+	{%- endif -%}
+{% endif %}
+
+{%- endblock form_errors -%}
+
+
+{{ form_start(form) }}
+{{ form_errors(form) }}
+{{ form_label(form.name) }}
+{{ form_widget(form.name) }}
+{{ form_errors(form.name) }}
+
+{# <button class="btn">{{ button_label|default('Save') }}</button> #}
+{{ form_end(form) }}

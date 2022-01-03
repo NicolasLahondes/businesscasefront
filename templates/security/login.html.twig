@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!
+{% endblock %}
+
+{% block body %}
+	<section class="h-100 gradient-form" style="background-color: #eee;">
+		<div class="container py-5 h-100">
+			<div class="row d-flex justify-content-center align-items-center h-100">
+				<div class="col-xl-10">
+					<div class="card rounded-3 text-black">
+						<div class="row g-0">
+							<div class="col-lg-6">
+								<div class="card-body p-md-5 mx-md-4">
+
+									<div class="text-center">
+										<img src="{{ asset('uploads/logo.svg') }}" style="width: 185px;" alt="logo">
+										<h4 class="mt-1 mb-5 pb-1">Lanimalerie</h4>
+									</div>
+									<form method="post">
+										{% if error %}
+											<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+										{% endif %}
+										<h1 class="h3 mb-3 font-weight-normal">Connectez vous!</h1>
+										<label for="inputEmail">Email</label>
+										<input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+										<label for="inputPassword">Mot de passe</label>
+										<input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+										<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+										<button class="btn btn-lg btn-primary" type="submit">
+											Se connecter
+										</button>
+									</form>
+								</div>
+							</div>
+							<div class="col-lg-6 d-flex align-items-center gradient-custom-2">
+								<div class="text-white px-3 py-4 p-md-5 mx-md-4">
+									<h4 class="mb-4">Lanimalerie s'engage</h4>
+									<p class="small mb-0">
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam pellentesque tortor sit amet urna eleifend, et egestas neque eleifend. Aliquam sagittis tellus elit, non rutrum sapien rutrum vitae. Integer tortor urna, hendrerit non fringilla vitae, egestas vel ante. Maecenas nec leo non risus euismod dictum vitae vitae eros. Quisque in luctus mi. Curabitur tempus varius finibus. Ut venenatis nulla eu nisi tristique, ac ultrices lorem varius. Nulla dignissim mauris a velit condimentu.</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	{% endblock %}
+
+	{# 
+	<form method="post">
+						{% if error %}
+							<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+						{% endif %}
+						<h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+						<label for="inputEmail">Email</label>
+						<input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+						<label for="inputPassword">Password</label>
+						<input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+						<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+						<button class="btn btn-lg btn-primary" type="submit">
+							Sign in
+						</button>
+					</form> #}

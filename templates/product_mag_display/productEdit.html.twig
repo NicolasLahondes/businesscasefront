@@ -1,0 +1,24 @@
+{% form_theme form 'foundation_5_layout.html.twig' %}
+
+{% block body %}
+	{{ form_start(form) }}
+
+	{{ form_errors(form) }}
+
+	{{ form_row(form.name ) }}
+	{{ form_row(form.fk_brand ) }}
+	{{ form_row(form.extaxprice ) }}
+	{{ form_row(form.stock ) }}
+	{{ form_row(form.description ) }}
+	{{ form_row(form.fk_categories ) }}
+
+	{{ form_row(form.active ) }}
+	{{ form_row(form.images) }}
+	{{ form_row(form.submit, { 'label': 'Modifier' }) }}
+	{{ form_end(form) }}
+{% endblock %}
+
+{% block delete%}
+	<a href={{ path('product_delete', {id: id} ) }}>Delete
+	</a>
+{% endblock %}

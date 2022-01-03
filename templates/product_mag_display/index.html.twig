@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ProductMagDisplayController!
+{% endblock %}
+
+
+{% block body %}
+
+	<div class="bg-dark d-flex justify-content-center">
+		<button type="button" class="btn btn-primary mt-4 mb-4 ms-4 text-center">
+			<a style="text-decoration: none; color: white;" href={{ path('product_new' ) }}>Ajouter un noveau produit</a>
+		</button>
+		<button type="button" class="btn btn-primary mt-4 mb-4 ms-4 text-center">
+			<a style="text-decoration: none; color: white;" href="">Page client des Produits</a>
+		</button>
+	</div>
+
+	<div class="box-shadow">
+		<table class="table">
+			<thead>
+				<th>Image</th>
+				<th>Nom</th>
+				<th>ID</th>
+				<th>Brand</th>
+				<th>Description</th>
+				<th>Price</th>
+				<th>Disponibilité du produit</th>
+				<th>Actions</th>
+			</thead>
+			<tbody>
+				{% for product in products %}
+					<tr>
+						<td>
+							{% if product.images %}
+								<img width="100" height="100" src="{{ asset('uploads/' ~ product.images)}}">
+							{% endif %}
+						</td>
+						<td>{{product.name}}</td>
+						<td>{{product.id}}</td>
+						<td>{{product.getFkBrand.name}}</td>
+						<td>{{product.description}}</td>
+						<td>{{product.extaxprice}}
+							€</td>
+						<td>
+							{% if product.stock > 5 %}
+								{{ 'Actuellement disponible' }}
+							{% else %}
+								{{ 'Rupture de Stock' }}
+							{% endif %}
+						</td>
+						<td>
+							<a href={{ path('product_mag_display_id', {id: product.getId} ) }}>Details</a>
+							<a href={{ path('product_delete', {id: product.getId} ) }}>Supprimer</a>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</tr>
+	</table>
+</div>{% endblock %}

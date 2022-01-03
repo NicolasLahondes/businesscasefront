@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Brands index
+{% endblock %}
+
+{% block body %}
+
+	<div class="bg-dark d-flex justify-content-center">
+		<button type="button" class="btn btn-primary mt-4 mb-4 ms-4 text-center">
+			<a style="text-decoration: none; color: white;" href={{ path('brands_new') }}>Ajouter une nouvelle marque</a>
+		</button>
+		<button type="button" class="btn btn-primary mt-4 mb-4 ms-4 text-center">
+			<a style="text-decoration: none; color: white;" href="">Page client des Marques</a>
+		</button>
+	</div>
+	<table class="table ">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Name</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for brand in brands %}
+				<tr>
+					<td>{{ brand.id }}</td>
+					<td>{{ brand.name }}</td>
+					<td>
+						<a href="{{ path('brands_show', {'id': brand.id}) }}">Détails</a>
+						<a href="{{ path('brands_edit', {'id': brand.id}) }}">Modifier</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="3">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+
+{% endblock %}

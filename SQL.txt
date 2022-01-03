@@ -1,0 +1,4 @@
+SELECT * FROM `products`
+INNER JOIN `products_categories` ON `products`.`id` = `products_categories`.`products_id`
+INNER JOIN `categories` ON `categories`.`id` = `products_categories`.`categories_id`
+WHERE `products`.id = 7
